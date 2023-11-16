@@ -24,7 +24,9 @@ public class Play : MonoBehaviour
 
     private void OnMouseDown()
     {
+        //check if the object needs collider and trigger check
         print("Working");
+        
         //if (validMove)
         //{
             xo.text = SetValue();
