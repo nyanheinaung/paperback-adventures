@@ -7,13 +7,15 @@ public class Play : MonoBehaviour
 {
     private Text xo;
     private bool validMove = true;
+    public Image board;
     private GameRules gameRulesRef;
     
     // Start is called before the first frame update
     void Start()
     {
         xo = GetComponentInChildren<Text>();
-        gameRulesRef = GetComponent<GameRules>();
+        gameRulesRef = board.GetComponent<GameRules>();
+  
     }
 
     // Update is called once per frame
@@ -22,19 +24,20 @@ public class Play : MonoBehaviour
         
     }
 
-    private void OnMouseDown()
+    
+    //Needed to use EventTrigger T_T , no need for collider2D
+    public void OnClicked()
     {
-        //check if the object needs collider and trigger check
-        print("Working");
-        
-        //if (validMove)
-        //{
-            xo.text = SetValue();
-            gameRulesRef.CheckWinner();
-            validMove = false;
-        //}
+        if (validMove)
+        {
+
+              xo.text = SetValue();
+              gameRulesRef.CheckWinner();
+              validMove = false;
+        }
 
     }
+
 
     public string SetValue()
     {

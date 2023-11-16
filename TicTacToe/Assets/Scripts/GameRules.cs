@@ -10,7 +10,7 @@ public class GameRules : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {       
         foreach(Image box in boxes)
         {
             box.GetComponentInChildren<Text>().text = "";
@@ -29,4 +29,6 @@ public class GameRules : MonoBehaviour
     {
         playerTurn = !playerTurn;
     }
+
+
 }
