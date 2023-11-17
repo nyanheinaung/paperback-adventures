@@ -8,7 +8,8 @@ public class GameRules : MonoBehaviour
     public Image[] boxes;
     public bool playerTurn = true;
     private int totalMoves;
-    private bool gameOver;
+    public bool gameOver;
+   // private bool winnerDecided;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,7 @@ public class GameRules : MonoBehaviour
     public void CheckCondition()
     {
         //Check if there is winner, then current player is the winner
-        if(CheckWinner())
+        if(Winner())
         {
             gameOver = true;
             DisplayWinner();
@@ -65,21 +66,21 @@ public class GameRules : MonoBehaviour
         print("Tie");
     }
 
-    void OneMovePlayed()
+    public void OneMovePlayed()
     {
         totalMoves++;
     }
 
-    void bool Winner()
+    bool Winner()
     {
-        if(box[0].GetComponentInChildren<Text>().text == box[1].GetComponentInChildren<Text>().text == box[2].GetComponentInChildren<Text>().text && box[2].GetComponentInChildren<Text>().text != ""||
-            box[3].GetComponentInChildren<Text>().text == box[4].GetComponentInChildren<Text>().text == box[5].GetComponentInChildren<Text>().text && box[5].GetComponentInChildren<Text>().text != ""||
-            box[6].GetComponentInChildren<Text>().text == box[7].GetComponentInChildren<Text>().text == box[8].GetComponentInChildren<Text>().text && box[8].GetComponentInChildren<Text>().text != ""||
-            box[0].GetComponentInChildren<Text>().text == box[3].GetComponentInChildren<Text>().text == box[6].GetComponentInChildren<Text>().text && box[6].GetComponentInChildren<Text>().text != ""||
-            box[1].GetComponentInChildren<Text>().text == box[4].GetComponentInChildren<Text>().text == box[7].GetComponentInChildren<Text>().text && box[7].GetComponentInChildren<Text>().text != ""||
-            box[2].GetComponentInChildren<Text>().text == box[5].GetComponentInChildren<Text>().text == box[8].GetComponentInChildren<Text>().text && box[8].GetComponentInChildren<Text>().text != ""||
-            box[0].GetComponentInChildren<Text>().text == box[4].GetComponentInChildren<Text>().text == box[8].GetComponentInChildren<Text>().text && box[8].GetComponentInChildren<Text>().text != ""||
-            box[2].GetComponentInChildren<Text>().text == box[4].GetComponentInChildren<Text>().text == box[6].GetComponentInChildren<Text>().text && box[6].GetComponentInChildren<Text>().text != ""
+        if(boxes[0].GetComponentInChildren<Text>().text == boxes[1].GetComponentInChildren<Text>().text && boxes[1].GetComponentInChildren<Text>().text  == boxes[2].GetComponentInChildren<Text>().text && boxes[2].GetComponentInChildren<Text>().text != ""||
+            boxes[3].GetComponentInChildren<Text>().text == boxes[4].GetComponentInChildren<Text>().text && boxes[4].GetComponentInChildren<Text>().text == boxes[5].GetComponentInChildren<Text>().text && boxes[5].GetComponentInChildren<Text>().text != ""||
+            boxes[6].GetComponentInChildren<Text>().text == boxes[7].GetComponentInChildren<Text>().text && boxes[7].GetComponentInChildren<Text>().text == boxes[8].GetComponentInChildren<Text>().text && boxes[8].GetComponentInChildren<Text>().text != ""||
+            boxes[0].GetComponentInChildren<Text>().text == boxes[3].GetComponentInChildren<Text>().text && boxes[3].GetComponentInChildren<Text>().text == boxes[6].GetComponentInChildren<Text>().text && boxes[6].GetComponentInChildren<Text>().text != ""||
+            boxes[1].GetComponentInChildren<Text>().text == boxes[4].GetComponentInChildren<Text>().text && boxes[4].GetComponentInChildren<Text>().text == boxes[7].GetComponentInChildren<Text>().text && boxes[7].GetComponentInChildren<Text>().text != ""||
+            boxes[2].GetComponentInChildren<Text>().text == boxes[5].GetComponentInChildren<Text>().text && boxes[5].GetComponentInChildren<Text>().text == boxes[8].GetComponentInChildren<Text>().text && boxes[8].GetComponentInChildren<Text>().text != ""||
+            boxes[0].GetComponentInChildren<Text>().text == boxes[4].GetComponentInChildren<Text>().text && boxes[4].GetComponentInChildren<Text>().text == boxes[8].GetComponentInChildren<Text>().text && boxes[8].GetComponentInChildren<Text>().text != ""||
+            boxes[2].GetComponentInChildren<Text>().text == boxes[4].GetComponentInChildren<Text>().text && boxes[4].GetComponentInChildren<Text>().text == boxes[6].GetComponentInChildren<Text>().text && boxes[6].GetComponentInChildren<Text>().text != ""
         )
         {            
             return true;
