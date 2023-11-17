@@ -25,7 +25,7 @@ public class Play : MonoBehaviour
     //Needed to use EventTrigger T_T , no need for collider2D
     public void OnClicked()
     {
-        if (validMove)
+        if (validMove && !gameRulesRef.gameOver)
         {
             //Make a move and draw X or O
             xo.text = SetValue();
