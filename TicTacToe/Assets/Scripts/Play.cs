@@ -29,7 +29,8 @@ public class Play : MonoBehaviour
         {
             //Make a move and draw X or O
             xo.text = SetValue();
-            gameRulesRef.CheckWinner();
+            gameRulesRef.OneMovePlayed();
+            gameRulesRef.CheckCondition();
             //This grid can no longer be played
             validMove = false;
         }
