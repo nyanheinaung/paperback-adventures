@@ -7,33 +7,31 @@ public class Play : MonoBehaviour
 {
     private Text xo;
     private bool validMove = true;
+
+    //Had to take a reference from this
     public Image board;
+    //To access reference to GameRules script
     private GameRules gameRulesRef;
     
     // Start is called before the first frame update
     void Start()
     {
+        //Get reference  to Text component to change it into X or O
         xo = GetComponentInChildren<Text>();
-        gameRulesRef = board.GetComponent<GameRules>();
-  
+        //Get GameRulesRef via "board"
+        gameRulesRef = board.GetComponent<GameRules>();  
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
+   
     //Needed to use EventTrigger T_T , no need for collider2D
     public void OnClicked()
     {
         if (validMove)
         {
-
-              xo.text = SetValue();
-              gameRulesRef.CheckWinner();
-              validMove = false;
+            //Make a move and draw X or O
+            xo.text = SetValue();
+            gameRulesRef.CheckWinner();
+            //This grid can no longer be played
+            validMove = false;
         }
 
     }
