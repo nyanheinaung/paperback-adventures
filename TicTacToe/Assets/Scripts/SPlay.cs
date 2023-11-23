@@ -5,11 +5,17 @@ using UnityEngine.UI;
 
 public class SPlay : MonoBehaviour
 {
-    private Text xo;
+    //private Text xo; (not needed now)
     private bool validMove = true;
 
+    public Sprite xImage;
+    public Sprite oImage;
+    public int moveValue;
     //Had to take a reference from this
-    public Image board;
+    //public Image board;
+
+    private Image source;
+
     //To access reference to GameRules script
     private SGameRules sGameRulesRef;
     
@@ -17,9 +23,17 @@ public class SPlay : MonoBehaviour
     void Start()
     {
         //Get reference  to Text component to change it into X or O
-        xo = GetComponentInChildren<Text>();
+        //xo = GetComponentInChildren<Text>();
         //Get GameRulesRef via "board"
-        sGameRulesRef = board.GetComponent<SGameRules>();  
+        //source.GetComponent<Image>();
+        
+        source = gameObject.GetComponent<Image>();
+        sGameRulesRef = gameObject.GetComponentInParent<SGameRules>();
+
+        //sGameRulesRef = board.GetComponent<SGameRules>();
+        
+        moveValue = 999;
+        
     }
    
     //Needed to use EventTrigger T_T , no need for collider2D
@@ -28,8 +42,9 @@ public class SPlay : MonoBehaviour
         if (validMove && !sGameRulesRef.gameOver)
         {
             //Make a move and draw X or O
-            xo.text = SetValue();
-            sGameRulesRef.OneMovePlayed();
+            SetImageAndMoveValue();
+
+            sGameRulesRef.MovePlayed();
             sGameRulesRef.CheckCondition();
             //This grid can no longer be played
             validMove = false;
@@ -38,15 +53,17 @@ public class SPlay : MonoBehaviour
     }
 
 
-    public string SetValue()
+    public void SetImageAndMoveValue()
     {
         if (sGameRulesRef.playerTurn)
         {
-            return "O";
+            source.sprite = oImage;
+            moveValue = 0;
         }
         else
         {
-            return "X";
+            source.sprite = xImage;
+            moveValue = 1;
         }
     }
 }
